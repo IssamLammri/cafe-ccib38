@@ -16,6 +16,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ApiResource(
     operations: [
@@ -58,6 +60,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'agent')]
+    private Collection $orders;
+
+
     /**
      * Mot de passe en clair envoyé par le front.
      * NON persisté en DB.
@@ -80,6 +87,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -167,5 +179,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // Sécurité : on nettoie le plainPassword après usage
         $this->plainPassword = null;
+    }
+
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function setOrders(Collection $orders): void
+    {
+        $this->orders = $orders;
     }
 }
