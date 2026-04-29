@@ -1,9 +1,9 @@
 services:
     php:
         build: .
-        container_name: e_radiologie_backend_php
+        container_name: cafe_ccib38_backend_php
         ports:
-            - "18740:8000"
+            - "19740:8000"
         volumes:
             - .:/app
         working_dir: /app
@@ -13,15 +13,15 @@ services:
 
     database:
         image: postgres:16
-        container_name: e_radiologie_backend_postgres
+        container_name: cafe_ccib38_backend_postgres
         ports:
-            - "15432:5432"
+            - "13432:5432"
         environment:
             POSTGRES_DB: ${POSTGRES_DB}
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         volumes:
-            - e_radiologie_backend_postgres_data:/var/lib/postgresql/data
+            - cafe_ccib38_backend_postgres_data:/var/lib/postgresql/data
 
 volumes:
-    e_radiologie_backend_postgres_data:
+    cafe_ccib38_backend_postgres_data:
