@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+use App\State\OrderProcessor;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['order:read']],
-    denormalizationContext: ['groups' => ['order:write']]
+    denormalizationContext: ['groups' => ['order:write']],
+    processor: OrderProcessor::class
 )]
 #[ORM\Entity]
 #[ORM\Table(name: '`order`')]
