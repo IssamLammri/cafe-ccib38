@@ -8,11 +8,20 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use App\State\OrderProcessor;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
 
 #[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(processor: OrderProcessor::class),
+        new Delete(),
+    ],
     normalizationContext: ['groups' => ['order:read']],
-    denormalizationContext: ['groups' => ['order:write']],
-    processor: OrderProcessor::class
+    denormalizationContext: ['groups' => ['order:write']]
 )]
 #[ORM\Entity]
 #[ORM\Table(name: '`order`')]

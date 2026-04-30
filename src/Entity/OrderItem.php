@@ -20,7 +20,7 @@ class OrderItem
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'items')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Order $orderRef = null;
 
     #[Groups(['order:read', 'order:write', 'order_item:read', 'order_item:write'])]
