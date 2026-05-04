@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['product:read']],
-    denormalizationContext: ['groups' => ['product:write']]
+    denormalizationContext: ['groups' => ['product:write']],
+    paginationEnabled: false
 )]
 #[ORM\Entity]
 class Product
