@@ -21,7 +21,8 @@ use ApiPlatform\Metadata\Delete;
         new Delete(),
     ],
     normalizationContext: ['groups' => ['order:read']],
-    denormalizationContext: ['groups' => ['order:write']]
+    denormalizationContext: ['groups' => ['order:write']],
+    paginationEnabled: false
 )]
 #[ORM\Entity]
 #[ORM\Table(name: '`order`')]

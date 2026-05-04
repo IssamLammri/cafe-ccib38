@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['discount:read']],
-    denormalizationContext: ['groups' => ['discount:write']]
+    denormalizationContext: ['groups' => ['discount:write']],
+    paginationEnabled: false
 )]
 #[ORM\Entity]
 class DiscountBeneficiary

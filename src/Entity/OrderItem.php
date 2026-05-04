@@ -8,7 +8,8 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['order_item:read']],
-    denormalizationContext: ['groups' => ['order_item:write']]
+    denormalizationContext: ['groups' => ['order_item:write']],
+    paginationEnabled: false
 )]
 #[ORM\Entity]
 class OrderItem
